@@ -57,6 +57,78 @@
             -webkit-backdrop-filter: blur(10px);
         }
 
+        .hero-visual {
+            position: relative;
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .hero-ambient {
+            position: absolute;
+            inset: -6% -10% auto -10%;
+            height: 68%;
+            background:
+                radial-gradient(56% 50% at 45% 44%, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03) 52%, transparent 76%),
+                radial-gradient(42% 38% at 68% 30%, rgba(148, 163, 184, 0.18), rgba(148, 163, 184, 0.02) 64%, transparent 78%);
+            filter: blur(24px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-tilt {
+            position: relative;
+            z-index: 1;
+            transform-style: preserve-3d;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            will-change: transform, box-shadow;
+            transition: transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .hero-photo {
+            animation: heroFloat 9s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        .hero-glow {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 260ms ease;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.015) 46%, transparent 72%);
+            mix-blend-mode: screen;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+            50% {
+                transform: translate3d(0, -8px, 0) scale(1.008);
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .hero-ambient {
+                inset: -5% -6% auto -6%;
+                height: 60%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-photo {
+                animation: none;
+            }
+
+            .hero-tilt,
+            .hero-visual {
+                transition: none;
+            }
+        }
+
         .font-mono {
             font-family: 'Space Mono', monospace;
         }
@@ -139,13 +211,17 @@
             </div>
 
             <div class="lg:col-span-5 lg:justify-self-end w-full max-w-[440px] mx-auto lg:mx-0">
-                <div class="relative rounded-3xl overflow-hidden border border-gray-800 bg-[#111] shadow-2xl">
-                    <img
-                        src="./assets/portfolioooo.jpg"
-                        alt="Portrait of Naili Abderrahim"
-                        class="w-full h-[520px] object-cover object-center grayscale"
-                    />
-                    <div class="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none"></div>
+                <div id="hero-visual" class="hero-visual">
+                    <div class="hero-ambient" aria-hidden="true"></div>
+                    <div id="hero-tilt" class="hero-tilt relative rounded-3xl overflow-hidden bg-[#111]">
+                        <img
+                            src="./assets/portfolioooo.jpg"
+                            alt="Portrait of Naili Abderrahim"
+                            class="hero-photo w-full h-[520px] object-cover object-center grayscale"
+                        />
+                        <div class="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none"></div>
+                        <div id="hero-glow" class="hero-glow"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -324,6 +400,10 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const menuLinks = document.querySelectorAll('.menu-link');
         const menuIcon = menuBtn.querySelector('i');
+        const heroVisual = document.getElementById('hero-visual');
+        const heroTilt = document.getElementById('hero-tilt');
+        const heroGlow = document.getElementById('hero-glow');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         menuBtn.addEventListener('click', () => {
             // Toggle menu visibility
@@ -346,6 +426,56 @@
                 menuIcon.classList.replace('fa-xmark', 'fa-bars');
             });
         });
+
+        // Smooth parallax that moves the hero visual slightly as the page scrolls.
+        if (heroVisual && !reduceMotion) {
+            let parallaxTicking = false;
+
+            const updateParallax = () => {
+                const y = Math.max(-10, Math.min(16, window.scrollY * 0.04));
+                heroVisual.style.transform = `translate3d(0, ${y}px, 0)`;
+                parallaxTicking = false;
+            };
+
+            window.addEventListener('scroll', () => {
+                if (!parallaxTicking) {
+                    window.requestAnimationFrame(updateParallax);
+                    parallaxTicking = true;
+                }
+            }, { passive: true });
+
+            updateParallax();
+        }
+
+        // Pointer-driven micro interaction: subtle 3D tilt + moving glow highlight.
+        if (heroTilt && heroGlow && !reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+            const maxTilt = 3.5;
+
+            const resetTilt = () => {
+                heroTilt.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                heroGlow.style.opacity = '0';
+            };
+
+            heroTilt.addEventListener('mousemove', (event) => {
+                const rect = heroTilt.getBoundingClientRect();
+                const x = (event.clientX - rect.left) / rect.width;
+                const y = (event.clientY - rect.top) / rect.height;
+
+                const rotateY = (x - 0.5) * maxTilt * 2;
+                const rotateX = (0.5 - y) * maxTilt * 2;
+
+                heroTilt.style.transform = `perspective(1200px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.008, 1.008, 1.008)`;
+                heroGlow.style.opacity = '0.85';
+                heroGlow.style.background = `radial-gradient(circle at ${(x * 100).toFixed(1)}% ${(y * 100).toFixed(1)}%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.02) 46%, transparent 74%)`;
+            });
+
+            heroTilt.addEventListener('mouseenter', () => {
+                heroGlow.style.opacity = '1';
+            });
+
+            heroTilt.addEventListener('mouseleave', resetTilt);
+            resetTilt();
+        }
     </script>
 </body>
 </html>
