@@ -8,7 +8,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome for Icons (بديل سهل للأيقونات) -->
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
@@ -155,7 +155,7 @@
         .font-mono {
             font-family: 'Space Mono', monospace;
         }
-        /* إخفاء شريط التمرير لمظهر أنظف */
+
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -174,17 +174,17 @@
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-gray-800">
         <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
             <!-- Menu Button (Mobile) -->
-            <button id="menu-btn" class="p-2 rounded-md transition glass-btn text-gray-100">
+            <button id="menu-btn" class="p-2 rounded-md transition glass-btn text-gray-100" aria-label="Toggle Menu">
                 <i class="fa-solid fa-bars text-xl"></i>
             </button>
             
             <!-- Logo -->
-            <div class="text-xl font-bold tracking-[0.3em] font-mono">
+            <a href="#" class="text-xl font-bold tracking-[0.3em] font-mono">
                 NAILI.
-            </div>
+            </a>
             
-            <!-- Theme Toggle (Visual only for now) -->
-            <button class="p-2 rounded-md transition text-gray-300 hover:text-white glass-btn">
+            <!-- Theme Toggle -->
+            <button class="p-2 rounded-md transition text-gray-300 hover:text-white glass-btn" aria-label="Toggle Theme">
                 <i class="fa-regular fa-sun text-lg"></i>
             </button>
         </div>
@@ -224,7 +224,7 @@
                         View my work
                     </a>
                     <a href="#contact" class="glass-btn text-white px-8 py-4 rounded-full font-semibold transition">
-                        Get in2 touch
+                        Get in touch
                     </a>
                 </div>
                 
@@ -266,9 +266,9 @@
             </div>
 
             <div class="flex gap-8 mt-16 font-mono text-sm tracking-widest">
-                <a href="#" class="flex items-center gap-2 hover:text-gray-400 transition">GITHUB <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-                <a href="#" class="flex items-center gap-2 hover:text-gray-400 transition">LINKEDIN <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-                <a href="#contact" class="flex items-center gap-2 hover:text-gray-400 transition">EMAIL <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+                <a href="https://github.com/Abderrahimnaili-cell" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-gray-400 transition">GITHUB <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+                <a href="https://dz.linkedin.com/in/abderrahim-naili-197502444" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-gray-400 transition">LINKEDIN <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+                <a href="mailto:abderrahim.naili@univ-bba.dz" class="flex items-center gap-2 hover:text-gray-400 transition">EMAIL <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
             </div>
         </section>
 
@@ -327,7 +327,7 @@
                             <span class="glass-tag rounded-full px-3 py-1 text-xs text-gray-300">HTML</span>
                             <span class="glass-tag rounded-full px-3 py-1 text-xs text-gray-300">CSS</span>
                         </div>
-                        <a href="#" class="glass-btn inline-flex items-center gap-2 text-sm font-semibold rounded-full px-4 py-2 text-white transition">
+                        <a href="https://github.com/Abderrahimnaili-cell" target="_blank" rel="noopener noreferrer" class="glass-btn inline-flex items-center gap-2 text-sm font-semibold rounded-full px-4 py-2 text-white transition">
                             Code <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                         </a>
                     </div>
@@ -350,7 +350,7 @@
                             <span class="glass-tag rounded-full px-3 py-1 text-xs text-gray-300">TensorFlow Lite</span>
                             <span class="glass-tag rounded-full px-3 py-1 text-xs text-gray-300">REST API</span>
                         </div>
-                        <a href="#" class="glass-btn inline-flex items-center gap-2 text-sm font-semibold rounded-full px-4 py-2 text-white transition">
+                        <a href="https://github.com/Abderrahimnaili-cell" target="_blank" rel="noopener noreferrer" class="glass-btn inline-flex items-center gap-2 text-sm font-semibold rounded-full px-4 py-2 text-white transition">
                             Code <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                         </a>
                     </div>
@@ -372,39 +372,39 @@
             </div>
 
             <div class="flex flex-wrap gap-4 mb-16">
-                <a href="#" class="glass-btn flex items-center gap-2 rounded-full px-6 py-3 text-white transition">
+                <a href="https://github.com/Abderrahimnaili-cell" target="_blank" rel="noopener noreferrer" class="glass-btn flex items-center gap-2 rounded-full px-6 py-3 text-white transition">
                     <i class="fa-brands fa-github text-xl"></i> GitHub
                 </a>
-                <a href="#" class="glass-btn flex items-center gap-2 rounded-full px-6 py-3 text-white transition">
+                <a href="https://dz.linkedin.com/in/abderrahim-naili-197502444" target="_blank" rel="noopener noreferrer" class="glass-btn flex items-center gap-2 rounded-full px-6 py-3 text-white transition">
                     <i class="fa-brands fa-linkedin text-xl"></i> LinkedIn
                 </a>
-                <a href="#" class="glass-btn flex items-center gap-2 rounded-full px-6 py-3 text-white transition">
+                <a href="mailto:abderrahim.naili@univ-bba.dz" class="glass-btn flex items-center gap-2 rounded-full px-6 py-3 text-white transition">
                     <i class="fa-solid fa-envelope text-xl"></i> Email
                 </a>
             </div>
 
             <!-- Contact Form -->
-            <form class="glass-panel rounded-3xl p-8 md:p-12 max-w-3xl">
+            <form action="mailto:abderrahim.naili@univ-bba.dz" method="post" enctype="text/plain" class="glass-panel rounded-3xl p-8 md:p-12 max-w-3xl">
                 <div class="space-y-6">
                     <div class="relative">
-                        <input type="text" placeholder="Name" class="w-full bg-[#0a0a0a] border border-gray-700 rounded-xl px-12 py-4 text-white focus:outline-none focus:border-gray-400 transition" />
+                        <input type="text" name="Name" required placeholder="Name" class="w-full bg-[#0a0a0a] border border-gray-700 rounded-xl px-12 py-4 text-white focus:outline-none focus:border-gray-400 transition" />
                         <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
                             <i class="fa-regular fa-user"></i>
                         </div>
                     </div>
                     <div class="relative">
-                        <input type="email" placeholder="Email" class="w-full bg-[#0a0a0a] border border-gray-700 rounded-xl px-12 py-4 text-white focus:outline-none focus:border-gray-400 transition" />
+                        <input type="email" name="Email" required placeholder="Email" class="w-full bg-[#0a0a0a] border border-gray-700 rounded-xl px-12 py-4 text-white focus:outline-none focus:border-gray-400 transition" />
                         <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
                             <i class="fa-regular fa-envelope"></i>
                         </div>
                     </div>
                     <div class="relative">
-                        <textarea placeholder="Message" rows="4" class="w-full bg-[#0a0a0a] border border-gray-700 rounded-xl px-12 py-4 text-white focus:outline-none focus:border-gray-400 transition resize-none"></textarea>
+                        <textarea name="Message" required placeholder="Message" rows="4" class="w-full bg-[#0a0a0a] border border-gray-700 rounded-xl px-12 py-4 text-white focus:outline-none focus:border-gray-400 transition resize-none"></textarea>
                         <div class="absolute left-4 top-6 text-gray-500">
                             <i class="fa-regular fa-comment-dots"></i>
                         </div>
                     </div>
-                    <button type="button" class="w-full glass-btn text-white font-semibold py-4 rounded-xl transition flex items-center justify-center gap-2">
+                    <button type="submit" class="w-full glass-btn text-white font-semibold py-4 rounded-xl transition flex items-center justify-center gap-2">
                         Send message <i class="fa-regular fa-paper-plane"></i>
                     </button>
                 </div>
@@ -414,10 +414,10 @@
 
     <!-- Footer -->
     <footer class="border-t border-gray-800 py-8 text-center text-gray-500 text-sm font-mono">
-        © 2024 Naili Abderrahim. Built with HTML, CSS & JS.
+        © 2026 Naili Abderrahim. Built with HTML, CSS & JS.
     </footer>
 
-    <!-- JavaScript for Mobile Menu -->
+    <!-- JavaScript for Mobile Menu & Dynamic Visuals -->
     <script>
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -430,7 +430,6 @@
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         menuBtn.addEventListener('click', () => {
-            // Toggle menu visibility
             if (mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.remove('hidden');
                 mobileMenu.classList.add('flex');
@@ -442,7 +441,6 @@
             }
         });
 
-        // Close menu when a link is clicked
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
@@ -451,7 +449,6 @@
             });
         });
 
-        // Smooth parallax that moves the hero visual slightly as the page scrolls.
         if (heroVisual && !reduceMotion) {
             let parallaxTicking = false;
 
@@ -471,7 +468,6 @@
             updateParallax();
         }
 
-        // Small white fume follows pointer/touch and drifts slightly with scroll.
         if (heroVisual && heroFume && !reduceMotion) {
             let fumeX = 58;
             let fumeY = 18;
@@ -496,9 +492,7 @@
             });
 
             heroVisual.addEventListener('touchmove', (event) => {
-                if (!event.touches[0]) {
-                    return;
-                }
+                if (!event.touches[0]) return;
                 moveFumeFromPoint(event.touches[0].clientX, event.touches[0].clientY);
                 heroFume.style.opacity = '0.58';
             }, { passive: true });
@@ -515,7 +509,6 @@
             paintFume();
         }
 
-        // Pointer-driven micro interaction: subtle 3D tilt + moving glow highlight.
         if (heroTilt && heroGlow && !reduceMotion && window.matchMedia('(pointer: fine)').matches) {
             const maxTilt = 3.5;
 
